@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div class="container mt-5 mb-5">
+    <h1>add blog</h1>
+    <form action="/blog/add" method="post">
+        <input type="text" name="title" placeholder="add post name" class="form-control"><br>
+        <input type="text" name="anons" placeholder="add post anons" class="form-control"><br>
+        <input type="text" name="full_text" placeholder="add post full text" class="form-control">
+        <button type="submit" class="btn btn-success">Add post</button>
+    </form>
+
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
