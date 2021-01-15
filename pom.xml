@@ -60,6 +60,19 @@
             <version>1.18.16</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>io.github.classgraph</groupId>
+            <artifactId>classgraph</artifactId>
+            <version>4.8.69</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jboss.spec.javax.net.ssl/jboss-jsse-api_8.0_spec -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.net.ssl</groupId>
+            <artifactId>jboss-jsse-api_8.0_spec</artifactId>
+            <version>1.0.0.Final</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

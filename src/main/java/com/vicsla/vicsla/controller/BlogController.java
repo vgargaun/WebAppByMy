@@ -76,4 +76,17 @@ public class BlogController {
         postRepositiry.save(post);
         return "redirect:/blog";
     }
+
+    @GetMapping("/test2")
+    public String test2(Model model) {
+        return "test";
+    }
+
+    @GetMapping("/test")
+    public String test(Model model) {
+        String https_url = "http://127.0.0.1:8080/test2";
+
+//        URL url = new URl(https_url);
+        return "test";
+    }
 }
