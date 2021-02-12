@@ -8,6 +8,7 @@ public class VicslaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VicslaApplication.class, args);
+		System.out.println("start");
 	}
 
 }

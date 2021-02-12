@@ -1,23 +1,31 @@
 package com.vicsla.vicsla.controller;
 
+import com.vicsla.vicsla.client.ClientService;
+import com.vicsla.vicsla.models.Client;
 import com.vicsla.vicsla.models.Post;
+import com.vicsla.vicsla.repo.ClientRepository;
 import com.vicsla.vicsla.repo.PostRepositiry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:4200")
 public class BlogController {
 
     @Autowired
     private PostRepositiry postRepositiry;
+    @Autowired
+    private ClientRepository clientRepository;
+    @Autowired
+    private ClientService clientService;
 
     @GetMapping("/blog")
     public String blog(Model model) {
@@ -45,7 +53,7 @@ public class BlogController {
         ArrayList<Post> postList = new ArrayList<>();
         post.ifPresent(postList::add);
         model.addAttribute("post", postList);
-        return "blog-details";
+        return "table";
     }
 
     @GetMapping("/blog/{id}/remove")
@@ -89,4 +97,47 @@ public class BlogController {
 //        URL url = new URl(https_url);
         return "test";
     }
+
+
+    @GetMapping("/date")
+    public @ResponseBody
+    Iterable<Client> date(Model model, HttpServletResponse http) throws IOException {
+//
+//        List<String> list = new ArrayList<>();
+//        list.add("one");
+//        list.add("two");
+//        list.add("three");
+
+
+//        JSONObject jsonResponse = new JSONObject();
+//        jsonResponse.put("TAIL", "MY TEXT");
+//        return String.valueOf(jsonResponse);
+//        return list;
+
+//        Optional<Client> client = clientRepository.findById(14L);
+
+        return clientRepository.findAll();
+    }
+
+    @PostMapping("/add")
+    public @ResponseBody
+    void registrationAdd(@RequestBody Client client,
+                         HttpServletResponse response) {
+        System.out.println("start");
+        clientRepository.save(client);
+        response.setStatus(200);
+        System.out.println(clientService.getText());
+        System.out.println("succes add " + client.getName());
+    }
+
+    @PostMapping("/delete")
+    public @ResponseBody
+    void delete(@RequestBody long id,
+                HttpServletResponse response) {
+
+        clientRepository.deleteById(id);
+        System.out.println("start " + id);
+    }
+
+
 }
